@@ -20,12 +20,9 @@ int main(int argc, char* argv[])
         static cv::Mat tmp;
         image.copyTo(tmp);
 
-        static int radius = 21;
-        switch (event)
-        {
-        case cv::EVENT_MOUSEWHEEL:
+        static int radius = 21; // default value
+        if (cv::EVENT_MOUSEWHEEL == event)
             radius = std::max(11, radius + cv::getMouseWheelDelta(flags) / 120);
-        }
 
         cv::circle(tmp, { x,y }, radius, { 255.,255.,255. }); // draw a circle around mouse position
         cv::imshow("image", tmp);
